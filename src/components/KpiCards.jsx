@@ -1,32 +1,43 @@
-import { Users, CheckCircle2, Activity, TrendingUp } from 'lucide-react'
+import { Users, CheckCircle2, Building2, TrendingUp } from 'lucide-react'
 
 function KpiCard({ icon: Icon, label, value, sub, color, delay }) {
   return (
     <div
-      className={`relative rounded-2xl p-5 card-glow animate-slide-up overflow-hidden group cursor-default bg-white`}
+      className="relative bg-white rounded-md p-5 animate-slide-up"
       style={{
         animationDelay: `${delay}ms`,
         animationFillMode: 'forwards',
-        borderTop: `3px solid ${color}`,
+        border: '1px solid #e2e8f0',
+        borderLeft: `4px solid ${color}`,
+        boxShadow: '0 1px 2px rgba(15, 23, 42, 0.04)',
       }}
     >
-      {/* Soft glow accent top-right */}
-      <div
-        className="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-10 blur-2xl transition-opacity duration-500 group-hover:opacity-20"
-        style={{ background: color }}
-      />
-
-      <div className="relative z-10 flex items-start justify-between">
-        <div>
-          <p className="text-xs font-body tracking-widest uppercase mb-2" style={{ color: '#94a3b8' }}>{label}</p>
-          <p className="text-3xl font-display font-bold leading-none" style={{ color: '#1e293b' }}>{value}</p>
-          {sub && <p className="text-sm mt-1.5 font-body" style={{ color: '#64748b' }}>{sub}</p>}
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0 flex-1">
+          <p
+            className="text-xs font-semibold tracking-wider uppercase mb-2"
+            style={{ color: '#64748b', letterSpacing: '0.06em' }}
+          >
+            {label}
+          </p>
+          <p
+            className="text-3xl font-bold leading-none tabular-nums"
+            style={{ color: '#0f172a' }}
+          >
+            {value}
+          </p>
+          {sub && (
+            <p className="text-xs mt-2 truncate" style={{ color: '#64748b' }}>
+              {sub}
+            </p>
+          )}
         </div>
         <div
-          className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-          style={{ background: `${color}18`, border: `1px solid ${color}30` }}
+          className="w-10 h-10 rounded-md flex items-center justify-center flex-shrink-0"
+          style={{ background: `${color}12`, border: `1px solid ${color}25` }}
+          aria-hidden="true"
         >
-          <Icon size={20} style={{ color }} strokeWidth={2} />
+          <Icon size={20} style={{ color }} strokeWidth={2.25} />
         </div>
       </div>
     </div>
@@ -43,35 +54,35 @@ export function KpiCards({ data }) {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       <KpiCard
-        icon={Activity}
+        icon={Building2}
         label="Total Binaan UPTD"
         value={totalUptd.toLocaleString('id')}
-        sub="unit pelaksana teknis"
-        color="#0284c7"
+        sub="Unit Pelaksana Teknis Daerah"
+        color="#1e3a8a"
         delay={50}
       />
       <KpiCard
         icon={Users}
         label="Total Pegawai"
         value={totalPegawai.toLocaleString('id')}
-        sub="seluruh satker"
-        color="#7c3aed"
+        sub="Seluruh satuan kerja"
+        color="#0369a1"
         delay={100}
       />
       <KpiCard
         icon={CheckCircle2}
-        label="Data Lengkap"
+        label="Data Sudah Lengkap"
         value={totalLengkap.toLocaleString('id')}
-        sub={`${persen}% dari total`}
-        color="#16a34a"
+        sub={`${persen}% dari total pegawai`}
+        color="#15803d"
         delay={150}
       />
       <KpiCard
         icon={TrendingUp}
-        label="Progress Tertinggi"
+        label="Capaian Tertinggi"
         value={`${tertinggi?.persen?.toFixed(2) ?? '0.00'}%`}
-        sub={tertinggi?.satker ?? '-'}
-        color="#ea580c"
+        sub={tertinggi?.satker ?? '—'}
+        color="#b91c1c"
         delay={200}
       />
     </div>
