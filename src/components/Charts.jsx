@@ -131,7 +131,7 @@ export function Charts({ data }) {
             style={{ background: '#f1f5f9', border: '1px solid #e2e8f0' }}
             role="group"
           >
-            {[['persen', 'Capaian'], ['pegawai', 'Volume'], ['satker', 'A–Z']].map(([val, label]) => (
+            {[['persen', 'Persentase'], ['pegawai', 'Jumlah Pegawai'], ['satker', 'Nama']].map(([val, label]) => (
               <button
                 key={val}
                 onClick={() => setSortBy(val)}
