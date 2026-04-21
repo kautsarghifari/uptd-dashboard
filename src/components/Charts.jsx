@@ -54,7 +54,6 @@ function CustomBarTooltip({ active, payload, label }) {
 }
 
 export function Charts({ data }) {
-  const [sortBy, setSortBy] = useState('persen')
   const [hoveredBar, setHoveredBar] = useState(null)
 
   const totalLengkap = data.reduce((s, r) => s + r.lengkap, 0)
@@ -68,11 +67,7 @@ export function Charts({ data }) {
   ]
 
   const barData = [...data]
-    .sort((a, b) => {
-      if (sortBy === 'persen') return b.persen - a.persen
-      if (sortBy === 'pegawai') return b.totalPegawai - a.totalPegawai
-      return a.satker.localeCompare(b.satker)
-    })
+    .sort((a, b) => b.persen - a.persen)
     .map(r => ({
       name: r.satker.replace('BBPVP ', '').replace('BPVP ', ''),
       fullName: r.satker,
@@ -124,28 +119,6 @@ export function Charts({ data }) {
                 Persentase data pegawai yang sudah lengkap
               </p>
             </div>
-          </div>
-
-          <div
-            className="flex rounded-lg overflow-hidden p-0.5"
-            style={{ background: '#f1f5f9', border: '1px solid #e2e8f0' }}
-            role="group"
-          >
-            {[['persen', 'Persentase'], ['pegawai', 'Jumlah Pegawai'], ['satker', 'Nama']].map(([val, label]) => (
-              <button
-                key={val}
-                onClick={() => setSortBy(val)}
-                className="text-xs px-3 py-1.5 font-semibold rounded-md transition-all focus:outline-none"
-                style={{
-                  background: sortBy === val ? '#ffffff' : 'transparent',
-                  color: sortBy === val ? COLORS.navy : COLORS.muted,
-                  boxShadow: sortBy === val ? '0 1px 3px rgba(15,23,42,0.1)' : 'none',
-                }}
-                aria-pressed={sortBy === val}
-              >
-                {label}
-              </button>
-            ))}
           </div>
         </div>
 
