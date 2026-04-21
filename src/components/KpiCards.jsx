@@ -55,7 +55,7 @@ export function KpiCards({ data }) {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       <KpiCard
         icon={Building2}
-        label="Total Binaan UPTD"
+        label="Total Pembina UPTD"
         value={totalUptd.toLocaleString('id')}
         sub="Unit Pelaksana Teknis Daerah"
         color="#1e3a8a"
