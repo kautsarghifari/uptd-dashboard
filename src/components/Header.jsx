@@ -50,25 +50,7 @@ export function Header({ lastUpdated, onRefresh, loading, error }) {
                 Sistem Monitoring Progres Kelengkapan Data Unit Pelaksana Teknis Daerah
               </p>
 
-              {/* Status indicator */}
-              <div className="flex items-center gap-2 mt-3">
-                <div className="relative flex items-center justify-center w-2 h-2">
-                  <span
-                    className="live-dot absolute inline-flex h-full w-full rounded-full opacity-60"
-                    style={{ background: error ? '#b91c1c' : '#15803d' }}
-                  />
-                  <span
-                    className="relative inline-flex rounded-full h-2 w-2"
-                    style={{ background: error ? '#b91c1c' : '#15803d' }}
-                  />
-                </div>
-                <span
-                  className="text-xs font-semibold tracking-wider uppercase"
-                  style={{ color: error ? '#b91c1c' : '#15803d', letterSpacing: '0.06em' }}
-                >
-                  {error ? 'Koneksi Terputus' : 'Sistem Aktif'}
-                </span>
-              </div>
+
             </div>
           </div>
 
